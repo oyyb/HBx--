@@ -56,21 +56,114 @@
 		
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"
 			integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-		<link rel="stylesheet" href="<?php echo __STATIC__?>css/swiper.min.css">
-		<link rel="stylesheet" href="<?php echo __STATIC__?>iconfont/iconfont.css">
-		<link rel="stylesheet" href="<?php echo __STATIC__?>aos-master/dist/aos.css">
-		<link rel="stylesheet" href="<?php echo __STATIC__?>css/animate.min.css">
-		<link rel="stylesheet" href="<?php echo __STATIC__?>css/style.css">
-		<link rel="stylesheet" href="<?php echo __STATIC__?>css/media.css">
+	<!-- <link rel="stylesheet" type="text/css" href="./css/swiper.min.css">
+		<link rel="stylesheet" type="text/css" href="./iconfont/iconfont.css">
+		<link rel="stylesheet" type="text/css" href="./aos-master/dist/aos.css">
+		<link rel="stylesheet" type="text/css" href="./css/animate.min.css">
+		<link rel="stylesheet" type="text/css" href="./css/style.css">
+		<link rel="stylesheet" type="text/css" href="./css/media.css"> -->
 		<!-- 通用样式引入 -->
 	</head>
 	<body ontouchstart> <!-- contouchstart:手机端触摸有交互 -->
+		<!-- 使用字体图标例子 -->
 		<div class="iconfont_example">
 			<i class="iconfont icon-ling"></i>
 		</div>
 		
-		<script src="./js/jquery.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.2/js/swiper.js"></script>
-		<script src="./js/public.js"></script>
+		<!-- 图片懒加载例子 -->
+		<div class="img lazyload_example">
+			<img src="" width="300" height="300" data-original="./img/lazyload_example.jpg?v=1" alt="">
+		</div>
+		
+		<script type="text/javascript" src="./js/jquery.js"></script>
+		<script type="text/javascript" src="./js/swiper.animate1.0.3.min.js"></script>
+		<script type="text/javascript" src="./js/swiper.min.js"></script>
+		<script type="text/javascript" src="./aos-master/dist/aos.js"></script>
+		<script type="text/javascript" src="./js/jquery.lazyload.min.js"></script>
+		<script type="text/javascript" src="./js/public.js"></script>
+		
+		<!-- 不要给css添加版本号，否则每点击链接都会重新加载css，每次跳转时页面会有严重变化 -->
+		<!-- 给js加版本号强制更新js文件 -->
+		<script>
+		var scripts = document.getElementsByTagName("script");
+			for(var i = 0;i < scripts.length;i ++){
+				if(scripts[i].src){
+					scripts[i].src = scripts[i].src+"?v="+new Date().getTime();
+				}
+			}
+		</script>
+		<script>
+		/**
+		 * 给页面引用的css和js加上版本号
+		 * @param {Object} config 配置
+		 */
+		function resource_loader(config) {
+		    this.css = config.css;
+		    this.scripts = config.scripts;
+		    this.head = document.getElementsByTagName('head')[0];
+		    //默认版本号采用时间戳，也可以自定义版本号
+		    this.v = '?v=' + new Date().getTime();
+		 
+		    this.load = function() {
+		        this.loadCSS();
+		        // this.loadScript();
+		    }
+		     
+		    //加载css引用
+		    this.loadCSS = function() {
+		        var that = this;
+		        this.css.forEach(function(csslink) {
+		            var link = document.createElement("link");
+		            link.type = "text/css";
+		            link.rel = "stylesheet";
+		            link.href = csslink + this.v;
+		            this.head.appendChild(link);
+		        });
+		    }
+		     
+		    //加载js引用
+		    // this.loadScript = function() {
+		    //     var that = this;
+		    //     this.scripts.forEach(function(scriptlink) {
+		    //         var script = document.createElement("script");
+		    //         script.type = "text/javascript";
+		    //         script.src = scriptlink + this.v;
+		    //         this.head.appendChild(script);
+		    //     });
+		    // }
+		    this.load();
+		}
+		</script>
+		<script type="text/javascript">
+		    $(function() {
+		        resource_loader({
+		            css: [
+		                './css/swiper.min.css',
+		                './iconfont/iconfont.css',
+		                './aos-master/dist/aos.css',
+		                './css/animate.min.css',
+		                './css/style.css',
+		                './css/media.css',
+		            ],
+		            // scripts: [
+		            //     '<?php echo __STATIC__?>js/jquery.js',
+		            //     '<?php echo __STATIC__?>aos-master/dist/aos.js',
+		            //     '<?php echo __STATIC__?>js/swiper.min.js',
+		            //     '<?php echo __STATIC__?>js/swiper.animate1.0.3.min.js',
+		            //     '<?php echo __STATIC__?>js/jquery.lazyload.min.js',
+		            //     '<?php echo __STATIC__?>js/public.js',
+		            // ]
+		        });
+		    })
+		</script>
+		
+		<!-- 给图片静态资源加上版本号强制清除浏览器缓存,缺点：进重复页面也会重新加载,在平时页面制作可以使用,正式页面手动加"?v=1" -->
+		<script>
+			$(document).ready(function(){
+			    $("img").each(function (i) {
+			        $(this).attr("data-original", $(this).attr("data-original")+"?v="+new Date().getTime());
+			    });
+			});
+		</script>
 	</body>
 </html>

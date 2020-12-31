@@ -24,21 +24,17 @@ $("#to-top").click(function() {
 
 //从页面获取data-bgurl,添加background背景图
 // 问题:当php遍历时出问题,无法遍历每个背景图,jq用each()也有问题
-<script type="text/javascript">
 $(document).ready(function(){
   $('#bg').css('background', 'url(' + $("#bg").attr("data-bgurl") + ') no-repeat center');
 });
-</script>
 
 //分页后取当前页的前两个与后两个,其他省略
-<script>
 $(document).ready(function(){
 	$('.list_page .current').prevAll().eq(0).css('display', 'inline-block');
 	$('.list_page .current').prevAll().eq(1).css('display', 'inline-block');
 	$('.list_page .current').nextAll().eq(0).css('display', 'inline-block');
 	$('.list_page .current').nextAll().eq(1).css('display', 'inline-block');
 });
-</script>
 
 //jq滚动监听
 $(window).scroll(function() {
@@ -69,4 +65,10 @@ $(document).ready(function() {
 	  $("#about-us .main-body .section h1").mouseout(function(){
 		  $(this).removeClass('animated rubberBand');
 	  });
+});
+
+// 图片懒加载与背景懒加载-
+$(function() {
+    $("img").lazyload();
+    $(".bg").lazyload();
 });

@@ -1,15 +1,243 @@
 <template>
-  <div>
-    顾客主页
+  <div style="height: 100vh;">
+    <el-container>
+      <el-header style="text-align: right; font-size: 12px">
+        <div class="oy-title">
+          <h1>订餐系统</h1>
+        </div>
+        <el-dropdown>
+          <i class="el-icon-setting" style="margin-right: 15px"></i>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item>查看</el-dropdown-item>
+            <el-dropdown-item>新增</el-dropdown-item>
+            <el-dropdown-item>删除</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+        <span>王小虎</span>
+      </el-header>
+      <el-container style="height: calc(100vh - 120px);">
+        <el-aside width="200px" style="background-color: rgb(238,241,246)">
+          <el-menu :default-openeds="['1', '3']">
+            <el-submenu index="1">
+              <template slot="title"><i class="el-icon-message"></i>导航一</template>
+              <el-menu-item-group>
+                <template slot="title">分组一</template>
+                <el-menu-item index="1-1">选项1</el-menu-item>
+                <el-menu-item index="1-2">选项2</el-menu-item>
+              </el-menu-item-group>
+              <el-menu-item-group title="分组2">
+                <el-menu-item index="1-3">选项3</el-menu-item>
+              </el-menu-item-group>
+              <el-submenu index="1-4">
+                <template slot="title">选项4</template>
+                <el-menu-item index="1-4-1">选项4-1</el-menu-item>
+              </el-submenu>
+            </el-submenu>
+            <el-submenu index="2">
+              <template slot="title"><i class="el-icon-menu"></i>导航二</template>
+              <el-menu-item-group>
+                <template slot="title">分组一</template>
+                <el-menu-item index="2-1">选项1</el-menu-item>
+                <el-menu-item index="2-2">选项2</el-menu-item>
+              </el-menu-item-group>
+              <el-menu-item-group title="分组2">
+                <el-menu-item index="2-3">选项3</el-menu-item>
+              </el-menu-item-group>
+              <el-submenu index="2-4">
+                <template slot="title">选项4</template>
+                <el-menu-item index="2-4-1">选项4-1</el-menu-item>
+              </el-submenu>
+            </el-submenu>
+            <el-submenu index="3">
+              <template slot="title"><i class="el-icon-setting"></i>导航三</template>
+              <el-menu-item-group>
+                <template slot="title">分组一</template>
+                <el-menu-item index="3-1">选项1</el-menu-item>
+                <el-menu-item index="3-2">选项2</el-menu-item>
+              </el-menu-item-group>
+              <el-menu-item-group title="分组2">
+                <el-menu-item index="3-3">选项3</el-menu-item>
+              </el-menu-item-group>
+              <el-submenu index="3-4">
+                <template slot="title">选项4</template>
+                <el-menu-item index="3-4-1">选项4-1</el-menu-item>
+              </el-submenu>
+            </el-submenu>
+          </el-menu>
+        </el-aside>
+
+        <el-container>
+          <el-main>
+            <el-table
+              :data="tableData3"
+              height="100%"
+              style="width: 100%">
+              <el-table-column
+                prop="date"
+                label="日期">
+              </el-table-column>
+              <el-table-column label="配送信息">
+                <el-table-column
+                  prop="name"
+                  label="姓名">
+                </el-table-column>
+                <el-table-column label="地址">
+                  <el-table-column
+                    prop="province"
+                    label="省份">
+                  </el-table-column>
+                  <el-table-column
+                    prop="city"
+                    label="市区">
+                  </el-table-column>
+                  <el-table-column
+                    prop="address"
+                    label="地址">
+                  </el-table-column>
+                  <el-table-column
+                    prop="zip"
+                    label="邮编">
+                  </el-table-column>
+                </el-table-column>
+              </el-table-column>
+            </el-table>
+          </el-main>
+        </el-container>
+      </el-container>
+      <el-footer>
+        <p>版权信息XXXXXXXXXXXXXXXXXXXXXXX</p>
+      </el-footer>
+    </el-container>
   </div>
 </template>
 
 <script>
 export default {
-name: "Main_Customer"
+  name: "Main_Customer",
+  data() {
+    return {
+      tableData3: [{
+        date: '2016-05-03',
+        name: '王小虎',
+        province: '上海',
+        city: '普陀区',
+        address: '上海市普陀区金沙江路 1518 弄',
+        zip: 200333
+      }, {
+        date: '2016-05-02',
+        name: '王小虎',
+        province: '上海',
+        city: '普陀区',
+        address: '上海市普陀区金沙江路 1518 弄',
+        zip: 200333
+      }, {
+        date: '2016-05-04',
+        name: '王小虎',
+        province: '上海',
+        city: '普陀区',
+        address: '上海市普陀区金沙江路 1518 弄',
+        zip: 200333
+      }, {
+        date: '2016-05-01',
+        name: '王小虎',
+        province: '上海',
+        city: '普陀区',
+        address: '上海市普陀区金沙江路 1518 弄',
+        zip: 200333
+      }, {
+        date: '2016-05-08',
+        name: '王小虎',
+        province: '上海',
+        city: '普陀区',
+        address: '上海市普陀区金沙江路 1518 弄',
+        zip: 200333
+      }, {
+        date: '2016-05-06',
+        name: '王小虎',
+        province: '上海',
+        city: '普陀区',
+        address: '上海市普陀区金沙江路 1518 弄',
+        zip: 200333
+      }, {
+        date: '2016-05-07',
+        name: '王小虎',
+        province: '上海',
+        city: '普陀区',
+        address: '上海市普陀区金沙江路 1518 弄',
+        zip: 200333
+      }, {
+        date: '2016-05-07',
+        name: '王小虎',
+        province: '上海',
+        city: '普陀区',
+        address: '上海市普陀区金沙江路 1518 弄',
+        zip: 200333
+      }, {
+        date: '2016-05-07',
+        name: '王小虎',
+        province: '上海',
+        city: '普陀区',
+        address: '上海市普陀区金沙江路 1518 弄',
+        zip: 200333
+      }, {
+        date: '2016-05-07',
+        name: '王小虎',
+        province: '上海',
+        city: '普陀区',
+        address: '上海市普陀区金沙江路 1518 弄',
+        zip: 200333
+      }, {
+        date: '2016-05-07',
+        name: '王小虎',
+        province: '上海',
+        city: '普陀区',
+        address: '上海市普陀区金沙江路 1518 弄',
+        zip: 200333
+      }, {
+        date: '2016-05-07',
+        name: '王小虎',
+        province: '上海',
+        city: '普陀区',
+        address: '上海市普陀区金沙江路 1518 弄',
+        zip: 200333
+      }, {
+        date: '2016-05-07',
+        name: '王小虎',
+        province: '上海',
+        city: '普陀区',
+        address: '上海市普陀区金沙江路 1518 弄',
+        zip: 200333
+      }]
+    }
+  }
 }
 </script>
 
 <style scoped>
+.oy-title {
+  text-align: center;
+}
 
+.oy-title h1 {
+  margin-bottom: 0;
+  line-height: 40px;
+}
+
+.el-header {
+  box-shadow: 0px 1px 5px #999999;
+  z-index: 999;
+}
+
+.el-footer {
+  box-shadow: 0px 1px 5px #999999;
+  z-index: 999;
+}
+
+.el-footer p{
+  line-height: 60px;
+}
+
+.el-aside {
+  overflow-x:hidden;
+}
 </style>

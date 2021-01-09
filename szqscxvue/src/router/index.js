@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import UserNameLogin from '../components/UserNameLogin'
+import Login from '../components/Login'
 import NotFound from '../components/NotFound'
 import Main from '../components/Main'
 
@@ -15,12 +15,12 @@ export default new Router({
 		{
 			path:'/',
 			name:'ToLogin',
-			redirect:'/usernamelogin',
+			redirect:'/login',
 		},
 		{
-			path:'/usernamelogin',
-			name:'usernamelogin',
-			component:UserNameLogin,
+			path:'/login',
+			name:'Login',
+			component:Login,
 		},
 		// 首页
 		{

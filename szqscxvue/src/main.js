@@ -29,14 +29,14 @@ router.beforeEach((to,from,next)=>{
 		console.log('清除成功');
 		// 清除isLogin,并跳转到登陆页面
 		next('/login');
-	}else if(to.path == '/usernamelogin'){
+	}else if(to.path == '/login'){
 		// 已登录直接跳转到首页
 		if (isLogin != null){
 			next({path:'/main'});
 		}
 	}else if (isLogin == null){
 		// 设备直接跳转到登陆页
-		next('/usernamelogin');
+		next('/login');
 	}
 	next();
 });

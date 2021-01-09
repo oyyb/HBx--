@@ -2,11 +2,11 @@
 	<div>
 		<el-form :model="form" :rules="rules" ref="ruleForm" label-width="80px" class="login-box">
 			<h3 class="login-title">欢迎登陆</h3>
-			<el-form-item label="用户名" prop="username">
-				<el-input v-model="form.username"></el-input>
+			<el-form-item label="手机号" prop="username">
+				<el-input v-model.number="form.username" placeholder="请输入手机号码"></el-input>
 			</el-form-item>
 			<el-form-item label="密码" prop="password">
-				<el-input type="password" v-model="form.password"></el-input>
+				<el-input type="password" v-model="form.password" placeholder="请输入8至13位密码"></el-input>
 			</el-form-item>
 			<el-form-item>
 				<el-button type="primary" @click="submitForm('ruleForm')">登陆</el-button>
@@ -17,24 +17,29 @@
 
 <script>
 	export default {
-		name: "UserNameLogin",
+		name: "Login",
 		data() {
+			let telCheck = (rule, value, callback) => {
+			      if (value === "") {
+			        return callback(new Error("电话号码是必须的"));
+			      } else if (!Number.isInteger(value)) {
+			        return callback(new Error("电话号码必须是数字"));
+			      } else if (value.toString().length !== 11) {
+			        return callback(new Error("电话号码必须是11位数字"));
+			      } else {
+			        callback();
+			      }
+			    };
 			return {
 				form: {
-					username: 'oyyb',
-					password: '12345678'
+					username: '',
+					password: ''
 				},
 				rules: {
 					username: [{
 							required: true,
-							message: '请输入用户名',
+							validator: telCheck,
 							trigger: 'blur' //失去焦点
-						},
-						{
-							min: 2,
-							max: 6,
-							message: '长度在 2 到 6 个字符',
-							trigger: 'blur'
 						}
 					],
 					password: [{
@@ -86,4 +91,3 @@
 		text-align: center;
 	}
 </style>
-

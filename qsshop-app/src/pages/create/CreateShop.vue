@@ -4,8 +4,11 @@
       <el-form-item label="店铺名称">
         <el-input v-model="form.store_name"></el-input>
       </el-form-item>
-      <el-form-item label="店铺ID">
-        <el-input v-model="form.store_id" :disabled="true"></el-input>
+<!--      <el-form-item label="店铺ID">-->
+<!--        <el-input v-model="form.store_id" :disabled="true"></el-input>-->
+<!--      </el-form-item>-->
+      <el-form-item label="创建者ID">
+        <el-input v-model="form.creator_id" :disabled="true"></el-input>
       </el-form-item>
       <el-form-item label="店铺状态">
         <el-select v-model="form.status" placeholder="请选择是否开启店铺">
@@ -34,17 +37,15 @@
 </template>
 
 <script>
-import UpdateShop from "@/api/update/UpdateShop.js"
-import store from "@/api/store.js"
-import ReadShopType from "@/api/read/ReadShopType.js"
+import CreateShop from "../../api/create/CreateShop";
 
 export default {
-  name: "UpdateShop",
+  name: "CreateShop",
   data() {
     return {
       form: {
         store_name: '',
-        store_id: '',
+        creator_id: '',
         status: '',
         address: '',
         classOne:'',
@@ -84,27 +85,17 @@ export default {
     }
   },
   mounted() {
-    store.listdata().then((res) => {
-      if (res.success) {
-        this.form = res.result[localStorage.getItem("store_id") - 1];
-      } else {
-
-      }
-    })
-    ReadShopType.readshoptype().then((res) => {
-      if (res.success) {
-        console.log('店铺类目');
-        this.options = JSON.parse(JSON.stringify(res.result).replace(/id/g,'value').replace(/name/g,'label'))
-        console.log(this.options);
-      }
-    })
+    this.form.creator_id = localStorage.getItem("userid");
+    console.log(localStorage.getItem("userid"));
   },
   methods: {
     onSubmit() {
-      UpdateShop.updatashop(this.form).then((res) => {
+      CreateShop.createshop(this.form).then((res) => {
         if (res.success) {
           alert('更新成功');
           this.prev();
+        } else {
+          alert(res.result);
         }
       })
     },
@@ -126,3 +117,4 @@ export default {
 <style scoped>
 
 </style>
+

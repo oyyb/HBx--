@@ -8,6 +8,7 @@ import goods from '@/pages/goods.vue'
 import order from '@/pages/order.vue'
 import gcate from '@/pages/gcate.vue'
 import UpdateShop from "../pages/update/UpdateShop";
+import CreateShop from "../pages/create/CreateShop";
 
 Vue.use(Router)
 const router = new Router({
@@ -62,6 +63,11 @@ const router = new Router({
       path: '/updateshop',
       name: 'updateshop',
       component: UpdateShop,
+    },
+    {
+      path: '/createshop',
+      name: 'createshop',
+      component: CreateShop,
     }
   ]
 });

@@ -13,7 +13,7 @@
             <el-link type="primary" :underline="false" @click="logout">退出</el-link>
           </li>
           <li>
-            <el-button type="primary">创建店铺</el-button>
+            <el-button type="primary" @click="createshop">创建店铺</el-button>
           </li>
         </ul>
       </div>
@@ -29,7 +29,6 @@
             <p class="act">
               <el-link type="primary" :underline="false" @click="sele(item.store_id)">选择</el-link>
               <el-link type="primary" :underline="false" @click="edit(item.store_id)">编辑</el-link>
-              <el-link type="primary" :underline="false" @click="dele(item.store_id)">删除</el-link>
             </p>
           </div>
         </div>
@@ -40,8 +39,8 @@
 </template>
 
 <script>
-import store from "@/api/store.js"
-import login from "@/api/login.js"
+import store from "@/api/store.js";
+import login from "@/api/login.js";
 
 export default {
   data() {
@@ -75,14 +74,14 @@ export default {
       localStorage.setItem("store_id", store_id);
       this.$router.push("/updateshop")
     },
-    dele(store_id) {
-      console.log('bbbbb');
-    },
     logout() {
       login.logout().then((res) => {
         localStorage.clear();
         this.$router.push('/login');
       })
+    },
+    createshop() {
+      this.$router.push("/createshop");
     }
   }
 }

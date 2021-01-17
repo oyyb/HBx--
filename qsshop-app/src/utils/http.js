@@ -1,6 +1,7 @@
 // 导入axios
 import axios from 'axios';
 import router from '@/router'
+import QS from 'qs'
 
 // 跳转登陆页面
 const toLogin = () => {
@@ -9,19 +10,11 @@ const toLogin = () => {
   })
 }
 
-const CheckToken = () => {
-  if (localStorage.getItem("token")) {
-    axios.defaults.headers.common['token'] = localStorage.getItem("token")
-  } else {
-    //toLogin();
-  }
-}
-
 // 公共路由(网络请求地址)
 axios.defaults.baseURL = 'http://qsshop.szqscx.com/';
 axios.defaults.timeout = 5000;
 axios.defaults.headers.common['token'] = localStorage.getItem("token")
-axios.defaults.headers.post['Content-type'] = "application/x-www-form-urlencoded"
+axios.defaults.headers.post['Content-type'] = "application/json"
 
 // 错误信息处理
 
@@ -47,7 +40,7 @@ const errorHandle = (status, other) => {
       console.log("服务不可用");
       break;
     default:
-      console.log(other);
+      //console.log(other);
       break;
   }
 }
@@ -55,31 +48,31 @@ const errorHandle = (status, other) => {
 
 // 封装自己的get/post方法
 export default {
-  get: function (path = '', data = {}) {
+  get: function(path = '', data = {}) {
     axios.defaults.headers.common['token'] = localStorage.getItem("token")
-    return new Promise(function (resolve, reject) {
+    return new Promise(function(resolve, reject) {
       axios.get(path, {
         params: data
       })
-        .then(function (response) {
+        .then(function(response) {
           // 按需求来，这里我需要的是response.data，所以返回response.data，一般直接返回response
           errorHandle(response.data.code, response.data.message);
           resolve(response.data);
         })
-        .catch(function (error) {
+        .catch(function(error) {
           reject(error);
         });
     });
   },
-  post: function (path = '', data = {}) {
+  post: function(path = '', data = {}) {
     axios.defaults.headers.common['token'] = localStorage.getItem("token")
-    return new Promise(function (resolve, reject) {
-      axios.post(path, data)
-        .then(function (response) {
+    return new Promise(function(resolve, reject) {
+      axios.post(path, QS.stringify(data))
+        .then(function(response) {
           errorHandle(response.data.code, response.data.message);
           resolve(response.data);
         })
-        .catch(function (error) {
+        .catch(function(error) {
           reject(error);
         });
     });

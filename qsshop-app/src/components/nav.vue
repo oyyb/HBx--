@@ -14,7 +14,7 @@
         </template>
         <el-menu-item-group>
           <el-menu-item index="/index/goods">商品管理</el-menu-item>
-          <el-menu-item index="2-2">商品分组</el-menu-item>
+          <el-menu-item index="/index/gcate">商品分组</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
       <el-menu-item index="/index/order">

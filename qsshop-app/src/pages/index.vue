@@ -36,31 +36,4 @@
 </script>
 
 <style>
-  .el-aside {
-    background-color: #444;
-    height: 100%;
-    border-bottom: 1px solid #b4b4b41c;
-    box-shadow: 0 10px 20px #b4b4b41c;
-  }
-
-  .el-submenu .el-menu-item {
-    min-width: 100%;
-  }
-
-  .el-header,
-  .el-footer {
-    border-bottom: 1px solid #b4b4b41c;
-    box-shadow: 0 10px 20px #b4b4b41c;
-    background-color: #fff;
-  }
-
-  .el-main {
-    background-color: #f7f8fa;
-  }
-
-  .all-page {
-    background-color: #fff;
-    min-height: 500px;
-    border-radius: 3px;
-  }
 </style>

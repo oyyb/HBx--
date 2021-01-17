@@ -3,16 +3,19 @@ import Router from 'vue-router'
 import index from '@/pages/index.vue'
 import dashboard from '@/pages/dashboard.vue'
 import login from '@/pages/login.vue'
+import store from '@/pages/store.vue'
 import goods from '@/pages/goods.vue'
 import order from '@/pages/order.vue'
+import gcate from '@/pages/gcate.vue'
+import UpdateShop from "../pages/update/UpdateShop";
 
 Vue.use(Router)
 const router = new Router({
   mode: 'history',
   routes: [
     {
-      path: '*',
-      redirect: '/index'
+      path: '/',
+      redirect: '/login'
     },
     {
       path: '/index',
@@ -34,6 +37,11 @@ const router = new Router({
           component: goods
         },
         {
+          path: 'gcate',
+          name: 'gcate',
+          component: gcate
+        },
+        {
           path: 'order',
           name: 'order',
           component: order
@@ -44,6 +52,16 @@ const router = new Router({
       path: '/login',
       name: 'login',
       component: login
+    },
+    {
+      path: '/store',
+      name: 'store',
+      component: store
+    },
+    {
+      path: '/updateshop',
+      name: 'updateshop',
+      component: UpdateShop,
     }
   ]
 });

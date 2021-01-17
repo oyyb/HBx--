@@ -22,49 +22,52 @@
 </template>
 
 <script>
-  import login from "@/api/login.js"
-  export default {
-    data() {
-      return {
-        formInline: {
-          username: '13760340870',
-          password: '#white111',
-          checked: ''
-        }
-      }
-    },
-    methods: {
-      onSubmit() {
-        login.onLogin(this.formInline).then((res) => {
-          if(res.success){
-            localStorage.setItem("token", res.result.token);
-            localStorage.setItem("userid", res.result.user.userid);
-            localStorage.setItem("groupid", res.result.user.groupid);
-            this.$router.push("/index")
-          }else{
-            console.log(res.message);
-          }
-        });
+import login from "@/api/login.js"
+
+export default {
+  data() {
+    return {
+      formInline: {
+        username: '13760340870',
+        password: '#white111',
+        checked: ''
       }
     }
+  },
+  methods: {
+    onSubmit() {
+      login.onLogin(this.formInline).then((res) => {
+        if (res.success) {
+          localStorage.setItem("token", res.result.token);
+          localStorage.setItem("userid", res.result.user.userid);
+          localStorage.setItem("username", res.result.user.username);
+          localStorage.setItem("fullName", res.result.user.fullName);
+          localStorage.setItem("groupid", res.result.user.groupid);
+          this.$router.push("/store")
+        } else {
+          console.log(res.message);
+        }
+      });
+    }
   }
+}
 </script>
 
 <style>
-  .loginbox {
-    width: 400px;
-    margin: 0 auto;
-    margin-top: 10%;
-  }
+.loginbox {
+  width: 400px;
+  margin: 0 auto;
+  margin-top: 10%;
+}
 
-  .loginbox h1 {
-    text-align: center;
-    font-size: 20px;
-  }
+.loginbox h1 {
+  text-align: center;
+  font-size: 20px;
+}
 
-  .loginbox p {
-    font-size: 12px;
-    height: 40px;
-    line-height: 40px;
-  }
+.loginbox p {
+  font-size: 12px;
+  height: 40px;
+  line-height: 40px;
+}
 </style>

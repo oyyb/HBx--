@@ -1,9 +1,9 @@
 import http from "@/utils/http.js"
 
-const login = {
-  //用户登录
-  onLogin(params) {
-    let url = '/api/login/onlogin';
+const store = {
+  //查询当前用户下所有店铺（必须是已登录状态下）
+  listdata(params) {
+    let url = '/api/store/listdata';
     return http.post(url, params);
   },
   //用户登出
@@ -17,4 +17,4 @@ const login = {
   }
 }
 
-export default login;
+export default store;

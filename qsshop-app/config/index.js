@@ -11,12 +11,12 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/main': {
-        target: 'http://shop.localhost/', // 后台api
+      '/api': {
+        target: 'http://qsshop.szqscx.com', // 后台api
         changeOrigin: true, //是否跨域
         secure: false,
         pathRewrite: {
-          '^/main': '' //需要rewrite的,
+          '^/api': '' //需要rewrite的,
         }
       }
     },

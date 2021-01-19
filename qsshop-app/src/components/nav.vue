@@ -1,7 +1,8 @@
 <template>
   <div>
-    <el-menu default-active="/index/dashboard" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse"
-      background-color="#444" text-color="#c8c9cc" active-text-color="#ffd04b" :router="true">
+    <el-menu default-active="/index/dashboard" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
+             :collapse="isCollapse" background-color="#444" text-color="#c8c9cc" active-text-color="#ffd04b"
+             :router="true">
       <p class="logo">奇思创想</p>
       <el-menu-item index="/index/dashboard">
         <i class="el-icon-data-line"></i>
@@ -14,7 +15,7 @@
         </template>
         <el-menu-item-group>
           <el-menu-item index="/index/goods">商品管理</el-menu-item>
-          <el-menu-item index="/index/gcate">商品分组</el-menu-item>
+          <el-menu-item index="/index/gcate">商品分类</el-menu-item>
         </el-menu-item-group>
       </el-submenu>
       <el-menu-item index="/index/order">
@@ -33,10 +34,15 @@
         <i class="el-icon-coin"></i>
         <span slot="title">营销</span>
       </el-menu-item>
-      <el-menu-item index="7">
-        <i class="el-icon-setting"></i>
-        <span slot="title">设置</span>
-      </el-menu-item>
+      <el-submenu index="7">
+        <template slot="title">
+          <i class="el-icon-setting"></i>
+          <span slot="title">设置</span>
+        </template>
+        <el-menu-item-group>
+          <el-menu-item index="/index/setting">店铺设置</el-menu-item>
+        </el-menu-item-group>
+      </el-submenu>
       <el-menu-item index="8">
         <i class="el-icon-truck"></i>
         <span slot="title">供应商</span>
@@ -46,37 +52,38 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        isCollapse: false
-      };
+export default {
+  name:"Nav",
+  data() {
+    return {
+      isCollapse: false
+    };
+  },
+  methods: {
+    handleOpen(key, keyPath) {
+      //console.log(key, keyPath);
     },
-    methods: {
-      handleOpen(key, keyPath) {
-        //console.log(key, keyPath);
-      },
-      handleClose(key, keyPath) {
-        //console.log(key, keyPath);
-      }
+    handleClose(key, keyPath) {
+      //console.log(key, keyPath);
     }
   }
+}
 </script>
 
 <style>
-  .logo {
-    font-size: 16px;
-    height: 60px;
-    line-height: 60px;
-    color: #fff;
-    text-align: center;
-  }
+.logo {
+  font-size: 16px;
+  height: 60px;
+  line-height: 60px;
+  color: #fff;
+  text-align: center;
+}
 
-  .el-menu {
-    border-right: none;
-  }
+.el-menu {
+  border-right: none;
+}
 
-  .el-menu-vertical-demo .is-active {
-    /*background-color: #1890ff !important;*/
-  }
+.el-menu-vertical-demo .is-active {
+  /*background-color: #1890ff !important;*/
+}
 </style>

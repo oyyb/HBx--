@@ -11,9 +11,7 @@
       }
     },
     mounted() {
-      store.listdata().then((res) => {
-        console.log(res);
-      })
+      
     },
     methods: {}
   }

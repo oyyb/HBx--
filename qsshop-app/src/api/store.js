@@ -14,7 +14,19 @@ const store = {
   //忘记密码
   test(){
 
-  }
+  },
+  create(params) {
+    let url = '/api/store/create';
+    return http.post(url, params);
+  },
+  update(params) {
+    let url = '/api/store/update';
+    return http.post(url, params);
+  },
+  storetype(params) {
+    let url = '/api/store/storetype';
+    return http.get(url, params);
+  },
 }
 
 export default store;

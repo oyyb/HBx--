@@ -7,12 +7,11 @@ import store from '@/pages/store.vue'
 import goods from '@/pages/goods.vue'
 import order from '@/pages/order.vue'
 import gcate from '@/pages/gcate.vue'
-import UpdateShop from "../pages/update/UpdateShop";
-import CreateShop from "../pages/create/CreateShop";
+import setting from "../pages/setting";
 
 Vue.use(Router)
 const router = new Router({
-  mode: 'history',
+  mode:'history',
   routes: [
     {
       path: '/',
@@ -46,6 +45,11 @@ const router = new Router({
           path: 'order',
           name: 'order',
           component: order
+        },
+        {
+          path: 'setting',
+          name: 'setting',
+          component: setting,
         }
       ]
     },
@@ -59,16 +63,6 @@ const router = new Router({
       name: 'store',
       component: store
     },
-    {
-      path: '/updateshop',
-      name: 'updateshop',
-      component: UpdateShop,
-    },
-    {
-      path: '/createshop',
-      name: 'createshop',
-      component: CreateShop,
-    }
   ]
 });
 // 使用 router.beforeEach 注册一个全局前置守卫，判断用户是否登陆

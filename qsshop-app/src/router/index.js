@@ -4,20 +4,21 @@ import index from '@/pages/index.vue'
 import dashboard from '@/pages/dashboard.vue'
 import login from '@/pages/login.vue'
 import store from '@/pages/store.vue'
+import editstore from '@/pages/store/editstore.vue'
+import createstore from '@/pages/store/createstore.vue'
 import goods from '@/pages/goods.vue'
 import order from '@/pages/order.vue'
 import gcate from '@/pages/gcate.vue'
-import setting from "../pages/setting";
+import supplier from '@/pages/supplier.vue'
+import addsupplier from '@/pages/supplier/addsupplier.vue'
+import editsupplier from '@/pages/supplier/editsupplier.vue'
 
 Vue.use(Router)
 const router = new Router({
-  mode:'history',
-  routes: [
-    {
-      path: '/',
-      redirect: '/login'
-    },
-    {
+  routes: [{
+      path: '*',
+      redirect: '/index'
+    }, {
       path: '/index',
       name: 'index',
       component: index,
@@ -25,44 +26,60 @@ const router = new Router({
       meta: {
         requireAuth: true
       },
-      children: [
-        {
-          path: 'dashboard',
-          name: 'dashboard',
-          component: dashboard
-        },
-        {
-          path: 'goods',
-          name: 'goods',
-          component: goods
-        },
-        {
-          path: 'gcate',
-          name: 'gcate',
-          component: gcate
-        },
-        {
-          path: 'order',
-          name: 'order',
-          component: order
-        },
-        {
-          path: 'setting',
-          name: 'setting',
-          component: setting,
-        }
-      ]
+      children: [{
+        path: 'dashboard',
+        name: 'dashboard',
+        component: dashboard
+      }, {
+        path: 'goods',
+        name: 'goods',
+        component: goods
+      }, {
+        path: 'gcate',
+        name: 'gcate',
+        component: gcate
+      }, {
+        path: 'order',
+        name: 'order',
+        component: order
+      }, {
+        path: 'editstore',
+        name: 'editstore',
+        component: editstore
+      }, {
+        path: 'supplier',
+        name: 'supplier',
+        component: supplier
+      }, {
+        path: 'addsupplier',
+        name: 'addsupplier',
+        component: addsupplier
+      }, {
+        path: 'editsupplier/:sup_id',
+        name: 'editsupplier',
+        component: editsupplier
+      }]
+    },
+    {
+      path: '/store',
+      name: 'store',
+      component: store,
+      meta: {
+        requireAuth: true
+      }
+    }, {
+      path: '/createstore',
+      name: 'createstore',
+      component: createstore,
+      meta: {
+        requireAuth: true
+      }
     },
     {
       path: '/login',
       name: 'login',
       component: login
-    },
-    {
-      path: '/store',
-      name: 'store',
-      component: store
-    },
+    }
   ]
 });
 // 使用 router.beforeEach 注册一个全局前置守卫，判断用户是否登陆
